@@ -138,7 +138,7 @@ name = "bigquery-notebook"
 version = "0.1.0"
 source = { virtual = "." }
 
-[package.dev-dependencies]
+[package.optional-dependencies]
 dev = [
     { name = "ipython" },
     { name = "jupyter" },
@@ -147,14 +147,13 @@ dev = [
 ]
 
 [package.metadata]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "ipython", specifier = ">=9.7.0" },
-    { name = "jupyter", specifier = ">=1.1.1" },
-    { name = "pip", specifier = ">=25.3" },
-    { name = "python-dotenv", specifier = ">=1.2.1" },
+requires-dist = [
+    { name = "ipython", marker = "extra == 'dev'", specifier = ">=9.7.0" },
+    { name = "jupyter", marker = "extra == 'dev'", specifier = ">=1.1.1" },
+    { name = "pip", marker = "extra == 'dev'", specifier = ">=25.3" },
+    { name = "python-dotenv", marker = "extra == 'dev'", specifier = ">=1.2.1" },
 ]
+provides-extras = ["dev"]
 
 [[package]]
 name = "bleach"
