@@ -30,3 +30,23 @@ Example `.env` file:
 ```
 LOCAL_DMA_SDK_PATH=/path/to/dma-sdk
 ```
+
+Add the following cell to the notebook to install the SDK from your local environment.
+
+```python
+# FOR LOCAL DEVELOPMENT, NOT NEEDED ON COLAB/DATABRICKS
+import os
+import pathlib
+from dotenv import load_dotenv
+load_dotenv()
+
+LOCAL_DMA_SDK_PATH = os.getenv('LOCAL_DMA_SDK_PATH')
+if LOCAL_DMA_SDK_PATH and pathlib.Path(LOCAL_DMA_SDK_PATH).exists():
+    print(f"Installing dma-sdk from {LOCAL_DMA_SDK_PATH}")
+    %pip install --editable "{LOCAL_DMA_SDK_PATH}"
+    
+    # Restart to make dependencies available
+    import IPython
+    app = IPython.Application.instance()
+    app.kernel.do_shutdown(True)
+```
